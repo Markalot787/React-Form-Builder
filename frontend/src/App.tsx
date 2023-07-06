@@ -1,4 +1,4 @@
-// REACT-FORM-BUILDER/frontend/src/App.tsximport { useState } from 'react';
+// REACT-FORM-BUILDER/frontend/src/App.tsx
 
 import React, { useState } from 'react';
 import Login from './pages/Login';
@@ -15,17 +15,11 @@ import LeadCaptureForm from './components/Leads/LeadCaptureForm';
 import FormList from './pages/FormList';
 
 function App() {
-	const [authenticated, setAuthenticated] = useState<boolean>(false);
-	const [email, setEmail] = useState(
-		localStorage.getItem('formit.sessionInfo')
-			? JSON.parse(localStorage.getItem('formit.sessionInfo') || '{}').email
-			: ''
+	const [authenticated, setAuthenticated] = useState<boolean | undefined>(
+		false
 	);
-	const [password, setPassword] = useState(
-		localStorage.getItem('formit.sessionInfo')
-			? JSON.parse(localStorage.getItem('formit.sessionInfo') || '{}').password
-			: ''
-	);
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
 
 	return (
 		<div className="App">

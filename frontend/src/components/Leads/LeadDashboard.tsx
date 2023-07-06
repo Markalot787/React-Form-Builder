@@ -21,7 +21,7 @@ const LeadDashboard = ({ setAuthenticated }: LeadDashboardProps) => {
 	const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
 	const [showModal, setShowModal] = useState(false);
 
-	const email = 'example@example.com';
+	const email = 'mark@gmail.com';
 
 	useEffect(() => {
 		const fetchLeads = async () => {
@@ -69,7 +69,9 @@ const LeadDashboard = ({ setAuthenticated }: LeadDashboardProps) => {
 	};
 
 	const wipeUser = () => {
-		setAuthenticated(undefined);
+		setAuthenticated((prevState: boolean | undefined) => {
+			return undefined;
+		});
 	};
 
 	return (
