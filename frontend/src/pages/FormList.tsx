@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { API_URL } from '../api';
-
-// const API_URL = process.env.REACT_APP_API || '';
+import { Link } from 'react-router-dom';
 
 type FormType = {
 	_id: string;
@@ -13,13 +12,7 @@ type FormType = {
 	submissions: Array<any>;
 };
 
-type UserFormListProps = {
-	userEmail: string;
-};
-
-const FormList: React.FC<UserFormListProps> = ({ userEmail }) => {
-	console.log(userEmail);
-
+const FormList = ({ userEmail }: { userEmail: string }) => {
 	const [forms, setForms] = useState<FormType[]>([]);
 
 	useEffect(() => {
@@ -45,11 +38,6 @@ const FormList: React.FC<UserFormListProps> = ({ userEmail }) => {
 
 				console.log('Form Promises:', formPromises);
 
-				// // Fetch form titles by form IDs
-				// const formTitlePromises = getFormTitlesByIds(formIds);
-
-				// console.log('Form Title Promises:', formTitlePromises);
-
 				// Wait for all promises to resolve
 				Promise.all([...formPromises])
 					.then((responses) => {
@@ -60,12 +48,13 @@ const FormList: React.FC<UserFormListProps> = ({ userEmail }) => {
 						const formTitles = responses[formIds.length];
 
 						console.log('Form Responses:', formResponses);
-						// console.log('Form Titles:', formTitles);
+						console.log('Form Titles:', formTitles);
 
 						// Map form data and titles
 						const allForms = formResponses.map((formRes) => ({
 							...formRes.data,
 							title: formRes.data.title,
+							key: formRes.data._id,
 						}));
 
 						console.log('All Forms:', allForms);
@@ -75,17 +64,15 @@ const FormList: React.FC<UserFormListProps> = ({ userEmail }) => {
 					.catch((err) => console.error(err));
 			})
 			.catch((err) => console.error(err));
-	}, [userEmail]);
+	}, []);
 
 	return (
 		<div>
 			<h1>User's Forms</h1>
 			{forms.map((form) => (
-				<div key={form._id}>
-					<h2>{form.title}</h2>
-					<p>{form.description}</p>
-					{/* Add more form details as needed */}
-				</div>
+				<li key={form._id}>
+					<Link to={`/form/${form._id}`}>{form.title}</Link>
+				</li>
 			))}
 		</div>
 	);

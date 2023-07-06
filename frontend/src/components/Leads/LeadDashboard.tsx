@@ -21,7 +21,7 @@ const LeadDashboard = ({ setAuthenticated }: LeadDashboardProps) => {
 	const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
 	const [showModal, setShowModal] = useState(false);
 
-	const email = 'mark@gmail.com';
+	const email = 'example@email.com';
 
 	useEffect(() => {
 		const fetchLeads = async () => {
