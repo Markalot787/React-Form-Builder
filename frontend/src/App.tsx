@@ -71,7 +71,6 @@ function App() {
 						path="/leads-dashboard"
 						element={<LeadDashboard setAuthenticated={setAuthenticated} />}
 					/>
-					{/* Add the following route */}
 					<Route
 						path="/dashboard/form-list"
 						element={<FormList userEmail={email} />}

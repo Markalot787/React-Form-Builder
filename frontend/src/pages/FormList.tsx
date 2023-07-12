@@ -12,7 +12,11 @@ type FormType = {
 	submissions: Array<any>;
 };
 
-const FormList = ({ userEmail }: { userEmail: string }) => {
+type FormListProps = {
+	userEmail: string;
+};
+
+const FormList = ({ userEmail }: FormListProps) => {
 	const [forms, setForms] = useState<FormType[]>([]);
 
 	useEffect(() => {
@@ -20,7 +24,6 @@ const FormList = ({ userEmail }: { userEmail: string }) => {
 			.get(`${API_URL}/user`, {
 				params: { email: userEmail },
 			})
-
 			.then((userResponse) => {
 				console.log('User Response:', userResponse.data);
 
@@ -64,7 +67,7 @@ const FormList = ({ userEmail }: { userEmail: string }) => {
 					.catch((err) => console.error(err));
 			})
 			.catch((err) => console.error(err));
-	}, []);
+	}, [userEmail]);
 
 	return (
 		<div>

@@ -54,6 +54,50 @@ app.post('/addUser/', async (req, res) => {
 		});
 	}
 });
+
+// ///////////////////////////////
+// app.post('/createForm/', async (req, res) => {
+// 	//create form
+// 	let valid = await authenticate(req.body);
+// 	if (valid === true) {
+// 		let response = await makeForm(req.body);
+// 		console.log(response, 'id');
+// 		res.send({
+// 			success: true,
+// 			msg: 'Form Created',
+// 		});
+// 	} else {
+// 		res.send({
+// 			success: false,
+// 			msg: 'Invalid Credentials',
+// 		});
+// 	}
+// });
+
+// ////////////////////////
+// app.post('/createForm', async (req, res) => {
+// 	const { title, description, email } = req.body;
+
+// 	// Create the new form
+// 	const form = new Form({
+// 		title,
+// 		description,
+// 		fields: [],
+// 		submissions: [],
+// 	});
+// 	await form.save();
+
+// 	// Find the user
+// 	const user = await User.findOne({ email });
+
+// 	// Add the form to the user and save the user
+// 	user.forms.push(form._id);
+// 	await user.save();
+
+// 	res.status(200).json({ message: 'Form created and added to user' });
+// });
+
+/////////////////////////////
 app.post('/createForm/', async (req, res) => {
 	let valid = await authenticate(req.body);
 	if (valid === true) {
